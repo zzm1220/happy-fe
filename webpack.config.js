@@ -1,5 +1,19 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const WEBPACK_ENV = process.env.WEBPACK_ENV || "dev";
+console.log(WEBPACK_ENV);
+
+const getHtmlConfig = function(name) {
+  return {
+    template: `./src/view/${name}.html`,
+    filename: `view/${name}.html`,
+    inject: true,
+    hash: true,
+    chunks: ["vendors","chunks",name],
+  };
+}
 const config = {
   mode: "development",
   entry: {
@@ -23,10 +37,12 @@ const config = {
       name: true,
       cacheGroups: {
         vendors: {
+          name: "vendors",
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
         },
         commons: {
+          name: "commons",
           minChunks: 2,
           priority: -20,
           reuseExistingChunk: true,
@@ -38,10 +54,37 @@ const config = {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 100,
+              name: "[name].[ext]",
+              outputPath: "resource/",
+              publicPath: "../resource/",
+            },
+          },
+        ],
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+      chunkFilename: "[id].css",
+    }),
+    new HtmlWebpackPlugin(getHtmlConfig("index")),
+    new HtmlWebpackPlugin(getHtmlConfig("login")),
+  ],
+  devServer: {
+    contentBase: "./dist",
+    open: true,
+    openPage: "view/index.html"
+  }
 };
 
 module.exports = config;
