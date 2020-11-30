@@ -27,6 +27,14 @@ const config = {
   externals: {
     jquery: "window.jQuery",
   },
+  resolve: {
+    alias: {
+      util: __dirname + "/src/util",
+      page: __dirname + "/src/page",
+      service: __dirname + "/src/service",
+      image: __dirname + "/src/image",
+    },
+  },
   optimization: {
     splitChunks: {
       chunks: "all",
@@ -83,8 +91,15 @@ const config = {
   devServer: {
     contentBase: "./dist",
     open: true,
-    openPage: "view/index.html"
-  }
+    openPage: "view/index.html",
+    proxy: {
+      "/api": {
+        target: "http://test.happymmall.com",
+        pathRewrite: { "^/api": "" },
+        changeOrigin: true,
+      },
+    },
+  },
 };
 
 module.exports = config;
