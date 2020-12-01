@@ -1,0 +1,22 @@
+.nav {
+    justify-content: space-between;
+    background-color: #eeeeee;
+    height: 30px;
+    line-height: 30px;
+}
+.nav .w {
+    display: flex;
+    justify-content: space-between;
+}
+.nav .user .link {
+    margin-right: 5px;
+}
+.nav .user.login {
+    display: none;
+}
+.nav .nav-list {
+    display: flex;
+}
+.nav .nav-list .nav-item {
+    margin-left: 5px;
+}

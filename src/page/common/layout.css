@@ -32,6 +32,9 @@ input[type='checkbox'] {
     cursor: pointer;
 }
 
+a{
+    text-decoration: none;
+}
 /* 定宽布局 */
 .w {
     width: 1080px;
@@ -45,3 +48,53 @@ input[type='checkbox'] {
 }
 
 /* 全局通用样式 */
+/* 隐藏 */
+.hide {
+    display: none;
+}
+/* 超链接样式 */
+.link {
+    color: #999999;
+    cursor: pointer;
+    text-decoration: none;
+}
+.link:hover{
+    color: #e80012;
+}
+.link-text {
+    color: #999999;
+    text-decoration: none;
+}
+/* btn */
+.btn {
+    display: inline-block;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #c60023;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-mini {
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+/* loading */
+.loading {
+    display: block;
+    width: 65px;
+    height: 65px;
+    margin: 10px auto;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background: url(../../image/icon/loading.gif);
+    opacity: .6;
+}

@@ -6,7 +6,12 @@
  * @FilePath: \happy-fe\src\page\common\index.js
  */
 import "./layout.css";
+import navSimple from "./nav-simple";
+import nav from "./nav";
+import "node_modules/font-awesome/css/font-awesome.min.css"
 
 export default {
   a: 1,
+  navSimple,
+  nav,
 };

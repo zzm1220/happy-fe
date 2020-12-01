@@ -34,6 +34,7 @@ const config = {
       page: __dirname + "/src/page",
       service: __dirname + "/src/service",
       image: __dirname + "/src/image",
+      node_modules: __dirname + "/node_modules"
     },
   },
   optimization: {
@@ -62,7 +63,12 @@ const config = {
   module: {
     rules: [{
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          { 
+            loader: MiniCssExtractPlugin.loader
+          }, 
+          "css-loader"
+        ],
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
@@ -81,7 +87,7 @@ const config = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
-      chunkFilename: "[id].css",
+      chunkFilename: "css/[id].css",
     }),
     new HtmlWebpackPlugin(getHtmlConfig("index")),
     new HtmlWebpackPlugin(getHtmlConfig("login")),
