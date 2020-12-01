@@ -1,8 +1,21 @@
+<!--
+ * @Author: zhimin
+ * @Date: 2020-12-01 16:26:35
+ * @LastEditors: zhimin
+ * @LastEditTime: 2020-12-01 16:55:26
+ * @FilePath: \happy-fe\src\view\index.html
+-->
 <!DOCTYPE html>
 <html lang="en">
-<%= require("html-loader!./layout/html-head.html") %>
+
+<head>
+    <%= require("html-loader!./layout/head-common.html") %>
+    <title>首页</title>
+</head>
+
 <body>
     hello worldweee!
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <%= require("html-loader!./layout/footer.html") %>
 </body>
+
 </html>

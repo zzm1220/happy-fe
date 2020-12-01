@@ -1,0 +1,47 @@
+/*
+ * @Author: zhimin
+ * @Date: 2020-12-01 16:46:31
+ * @LastEditors: zhimin
+ * @LastEditTime: 2020-12-01 17:17:07
+ * @FilePath: \happy-fe\src\page\common\layout.css
+ */
+/* css reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f6f6f6;
+    font: 12px/1.5 tahoma, arial, Microsoft Yahei, sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+}
+
+label {
+    cursor: pointer;
+}
+
+input[type='checkbox'] {
+    cursor: pointer;
+}
+
+/* 定宽布局 */
+.w {
+    width: 1080px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.large .w {
+    width: 1600px;
+}
+
+/* 全局通用样式 */

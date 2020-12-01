@@ -5,13 +5,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WEBPACK_ENV = process.env.WEBPACK_ENV || "dev";
 console.log(WEBPACK_ENV);
 
-const getHtmlConfig = function(name) {
+const getHtmlConfig = function (name) {
   return {
     template: `./src/view/${name}.html`,
     filename: `view/${name}.html`,
     inject: true,
     hash: true,
-    chunks: ["vendors","chunks",name],
+    chunks: ["vendors", "chunks", name],
   };
 }
 const config = {
@@ -23,6 +23,7 @@ const config = {
   output: {
     filename: "js/[name].js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/dist/",
   },
   externals: {
     jquery: "window.jQuery",
@@ -59,24 +60,21 @@ const config = {
     },
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 100,
-              name: "[name].[ext]",
-              outputPath: "resource/",
-              publicPath: "../resource/",
-            },
+        use: [{
+          loader: "url-loader",
+          options: {
+            limit: 100,
+            name: "[name].[ext]",
+            outputPath: "resource/",
+            publicPath: "../resource/",
           },
-        ],
+        }, ],
       },
     ],
   },
@@ -91,11 +89,13 @@ const config = {
   devServer: {
     contentBase: "./dist",
     open: true,
-    openPage: "view/index.html",
+    openPage: "dist/view/index.html",
     proxy: {
       "/api": {
         target: "http://test.happymmall.com",
-        pathRewrite: { "^/api": "" },
+        pathRewrite: {
+          "^/api": ""
+        },
         changeOrigin: true,
       },
     },
