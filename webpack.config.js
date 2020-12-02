@@ -5,10 +5,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WEBPACK_ENV = process.env.WEBPACK_ENV || "dev";
 console.log(WEBPACK_ENV);
 
-const getHtmlConfig = function (name) {
+const getHtmlConfig = function (name,title) {
   return {
     template: `./src/view/${name}.html`,
     filename: `view/${name}.html`,
+    title,
     inject: true,
     hash: true,
     chunks: ["vendors", "chunks", name],
@@ -19,6 +20,7 @@ const config = {
   entry: {
     index: "./src/page/index",
     login: "./src/page/login",
+    result: "./src/page/result",
   },
   output: {
     filename: "js/[name].js",
@@ -34,7 +36,7 @@ const config = {
       page: __dirname + "/src/page",
       service: __dirname + "/src/service",
       image: __dirname + "/src/image",
-      node_modules: __dirname + "/node_modules"
+      node_modules: __dirname + "/node_modules",
     },
   },
   optimization: {
@@ -61,26 +63,33 @@ const config = {
     },
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.css$/,
         use: [
-          { 
-            loader: MiniCssExtractPlugin.loader
-          }, 
-          "css-loader"
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          "css-loader",
         ],
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [{
-          loader: "url-loader",
-          options: {
-            limit: 100,
-            name: "[name].[ext]",
-            outputPath: "resource/",
-            publicPath: "../resource/",
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 100,
+              name: "[name].[ext]",
+              outputPath: "resource/",
+              publicPath: "../resource/",
+            },
           },
-        }, ],
+        ],
+      },
+      {
+        test: /\.string$/,
+        use: "html-loader",
       },
     ],
   },
@@ -89,8 +98,9 @@ const config = {
       filename: "css/[name].css",
       chunkFilename: "css/[id].css",
     }),
-    new HtmlWebpackPlugin(getHtmlConfig("index")),
-    new HtmlWebpackPlugin(getHtmlConfig("login")),
+    new HtmlWebpackPlugin(getHtmlConfig("index","首页")),
+    new HtmlWebpackPlugin(getHtmlConfig("login","登录")),
+    new HtmlWebpackPlugin(getHtmlConfig("result","操作结果")),
   ],
   devServer: {
     contentBase: "./dist",
@@ -100,7 +110,7 @@ const config = {
       "/api": {
         target: "http://test.happymmall.com",
         pathRewrite: {
-          "^/api": ""
+          "^/api": "",
         },
         changeOrigin: true,
       },
