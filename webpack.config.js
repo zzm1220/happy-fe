@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WEBPACK_ENV = process.env.WEBPACK_ENV || "dev";
 console.log(WEBPACK_ENV);
 
-const getHtmlConfig = function (name,title) {
+const getHtmlConfig = function (name, title) {
   return {
     template: `./src/view/${name}.html`,
     filename: `view/${name}.html`,
@@ -21,6 +21,7 @@ const config = {
     index: "./src/page/index",
     login: "./src/page/login",
     result: "./src/page/result",
+    register: "./src/page/register"
   },
   output: {
     filename: "js/[name].js",
@@ -63,11 +64,9 @@ const config = {
     },
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
-        use: [
-          {
+        use: [{
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
@@ -75,17 +74,15 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 100,
-              name: "[name].[ext]",
-              outputPath: "resource/",
-              publicPath: "../resource/",
-            },
+        use: [{
+          loader: "url-loader",
+          options: {
+            limit: 100,
+            name: "[name].[ext]",
+            outputPath: "resource/",
+            publicPath: "../resource/",
           },
-        ],
+        }, ],
       },
       {
         test: /\.string$/,
@@ -98,9 +95,10 @@ const config = {
       filename: "css/[name].css",
       chunkFilename: "css/[id].css",
     }),
-    new HtmlWebpackPlugin(getHtmlConfig("index","首页")),
-    new HtmlWebpackPlugin(getHtmlConfig("login","登录")),
-    new HtmlWebpackPlugin(getHtmlConfig("result","操作结果")),
+    new HtmlWebpackPlugin(getHtmlConfig("index", "首页")),
+    new HtmlWebpackPlugin(getHtmlConfig("login", "登录")),
+    new HtmlWebpackPlugin(getHtmlConfig("result", "操作结果")),
+    new HtmlWebpackPlugin(getHtmlConfig("register", "注册"))
   ],
   devServer: {
     contentBase: "./dist",
