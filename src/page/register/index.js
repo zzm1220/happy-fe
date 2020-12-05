@@ -6,17 +6,26 @@
  * @FilePath: \happy-fe\src\page\register\index.js
  */
 import "./index.css";
-import navSimple from "page/common/nav-simple";
 import util from "util";
 import userService from "service/user";
-import common from "page/common";
+import "page/common";
 
 
-const login = {
+const register = {
     init() {
         this.bindEvent();
     },
     bindEvent() {
+        // 验证username
+        $("#username").blur(function(e){
+            const username = $.trim($(this).val());
+            if(!username) return;
+            userService.checkUsername(username,(res)=>{
+                register.formError.hide();
+            },(errMsg)=>{
+                register.formError.show(errMsg);
+            });
+        });
         // 登录按钮的点击
         $("#submit").click((e) => {
             this.submit();
@@ -30,15 +39,20 @@ const login = {
     },
     submit() {
         const formData = {
-            username: $.trim($("#username").val()),
-            password: $.trim($("#password").val())
+          username: $.trim($("#username").val()),
+          password: $.trim($("#password").val()),
+          passwordConfirm: $.trim($("#password-conform").val()),
+          phone: $.trim($("#phone").val()),
+          email: $.trim($("#email").val()),
+          question: $.trim($("#question").val()),
+          answer: $.trim($("#answer").val()),
         };
         // 表单验证结果
         const validateRes = this.formValidate(formData);
         // 验证成功
         if (validateRes.status) {
-            userService.login(formData, (res) => {
-                window.location.href = util.getUrlParam("redirect") || "./index.html";
+            userService.register(formData, (res) => {
+                window.location.href = "./result.html?type=register";
             }, (errMsg) => {
                 this.formError.show(errMsg);
             });
@@ -59,6 +73,30 @@ const login = {
             res.msg = "密码不能为空";
             return res;
         }
+        if (formData.password.length < 6) {
+          res.msg = "密码长度不能少于六位";
+          return res;
+        }
+        if (formData.password !== formData.passwordConfirm) {
+        res.msg = "两次输入的密码不一致";
+        return res;
+        }
+        if (!util.validate(formData.phone, "phone")) {
+          res.msg = "请输入正确手机号";
+          return res;
+        }
+        if (!util.validate(formData.email, "email")) {
+          res.msg = "请输入正确邮箱";
+          return res;
+        }
+        if (!util.validate(formData.question, "require")) {
+          res.msg = "问题不能为空";
+          return res;
+        }
+        if (!util.validate(formData.answer, "require")) {
+          res.msg = "答案不能为空";
+          return res;
+        }
         // 返回正确提示
         res = {
             status: true,
@@ -71,11 +109,11 @@ const login = {
             $(".error-item").show().find(".error-msg").text(errMsg);
         },
         hide() {
-            $(".error-item").hide().find(".error-msg").text(text);
+            $(".error-item").hide().find(".error-msg").text();
         }
     }
 };
 
 $(function () {
-    login.init();
+    register.init();
 });

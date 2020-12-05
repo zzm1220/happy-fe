@@ -6,10 +6,10 @@
  * @FilePath: \happy-fe\src\page\login\index.js
  */
 import "./index.css";
-import navSimple from "page/common/nav-simple";
 import util from "util";
 import userService from "service/user";
-import common from "page/common";
+import "page/common";
+import "page/common/nav-simple";
 
 
 const login = {
@@ -71,7 +71,7 @@ const login = {
             $(".error-item").show().find(".error-msg").text(errMsg);
         },
         hide() {
-            $(".error-item").hide().find(".error-msg").text(text);
+            $(".error-item").hide().find(".error-msg").text();
         }
     }
 };

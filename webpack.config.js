@@ -21,7 +21,9 @@ const config = {
     index: "./src/page/index",
     login: "./src/page/login",
     result: "./src/page/result",
-    register: "./src/page/register"
+    register: "./src/page/register",
+    "pass-reset": "./src/page/pass-reset",
+    center: "./src/page/center",
   },
   output: {
     filename: "js/[name].js",
@@ -64,9 +66,11 @@ const config = {
     },
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.css$/,
-        use: [{
+        use: [
+          {
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
@@ -74,15 +78,17 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [{
-          loader: "url-loader",
-          options: {
-            limit: 100,
-            name: "[name].[ext]",
-            outputPath: "resource/",
-            publicPath: "../resource/",
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 100,
+              name: "[name].[ext]",
+              outputPath: "resource/",
+              publicPath: "../resource/",
+            },
           },
-        }, ],
+        ],
       },
       {
         test: /\.string$/,
@@ -98,7 +104,9 @@ const config = {
     new HtmlWebpackPlugin(getHtmlConfig("index", "首页")),
     new HtmlWebpackPlugin(getHtmlConfig("login", "登录")),
     new HtmlWebpackPlugin(getHtmlConfig("result", "操作结果")),
-    new HtmlWebpackPlugin(getHtmlConfig("register", "注册"))
+    new HtmlWebpackPlugin(getHtmlConfig("register", "注册")),
+    new HtmlWebpackPlugin(getHtmlConfig("pass-reset", "密码找回")),
+    new HtmlWebpackPlugin(getHtmlConfig("center", "个人中心")),
   ],
   devServer: {
     contentBase: "./dist",

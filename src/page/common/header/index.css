@@ -37,3 +37,14 @@
     color: #fff;
     text-align: center;
 }
+
+/* 面包屑导航 */
+.crumb {
+    margin-bottom: 15px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #eeeeee;
+    border-top: 2px solid #c60023;
+    color: #888888;
+    font-size: 14px;
+}

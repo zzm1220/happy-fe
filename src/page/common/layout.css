@@ -53,6 +53,21 @@ a {
     width: 1600px;
 }
 
+.panel {
+    padding: 10px;
+    background-color: #ffffff;
+}
+.panel .panel-title{
+    padding: 10px;
+    font-size: 14px;
+    color: #666666;
+    font-weight: bold;
+    border-bottom: 1px solid #eeeeee;
+}
+.panel .panel-body{
+    padding: 10px;
+    overflow: hidden;
+}
 /* 全局通用样式 */
 /* 隐藏 */
 .hide {
