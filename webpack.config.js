@@ -24,6 +24,8 @@ const config = {
     register: "./src/page/register",
     "pass-reset": "./src/page/pass-reset",
     center: "./src/page/center",
+    "center-update": "./src/page/center-update",
+    "pass-update": "./src/page/pass-update"
   },
   output: {
     filename: "js/[name].js",
@@ -66,11 +68,9 @@ const config = {
     },
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
-        use: [
-          {
+        use: [{
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
@@ -78,17 +78,15 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 100,
-              name: "[name].[ext]",
-              outputPath: "resource/",
-              publicPath: "../resource/",
-            },
+        use: [{
+          loader: "url-loader",
+          options: {
+            limit: 100,
+            name: "[name].[ext]",
+            outputPath: "resource/",
+            publicPath: "../resource/",
           },
-        ],
+        }, ],
       },
       {
         test: /\.string$/,
@@ -107,6 +105,8 @@ const config = {
     new HtmlWebpackPlugin(getHtmlConfig("register", "注册")),
     new HtmlWebpackPlugin(getHtmlConfig("pass-reset", "密码找回")),
     new HtmlWebpackPlugin(getHtmlConfig("center", "个人中心")),
+    new HtmlWebpackPlugin(getHtmlConfig("center-update", "修改个人信息")),
+    new HtmlWebpackPlugin(getHtmlConfig("pass-update", "修改密码")),
   ],
   devServer: {
     contentBase: "./dist",

@@ -2,8 +2,8 @@
  * @Author: zhimin
  * @Date: 2020-12-06 09:24:09
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-06 14:43:45
- * @FilePath: \happy-fe\src\page\center-update\index.js
+ * @LastEditTime: 2020-12-06 15:50:19
+ * @FilePath: \happy-fe\src\page\pass-update\index.js
  */
 import "./index.css";
 import "page/common/nav";
@@ -11,7 +11,6 @@ import "page/common/header";
 import navSide from "page/common/nav-side";
 import util from "util";
 import userService from "service/user";
-import templateIndex from "./index.string";
 
 
 const center = {
@@ -21,32 +20,23 @@ const center = {
     },
     onLoad() {
         navSide.init({
-            name: "center",
-        });
-        this.loadUserInfo();
-    },
-    loadUserInfo() {
-        let userHtml = "";
-        userService.getUserInfo((res) => {
-            userHtml = util.renderHtml(templateIndex, res);
-            $(".panel-body").html(userHtml);
-        }, (errMsg) => {
-            util.errorTips(errMsg);
+            name: "pass-update",
         });
     },
     bindEvent() {
         $(document).on("click", ".btn-submit", (e) => {
             const userInfo = {
-                phone: $.trim($('#phone').val()),
-                email: $.trim($('#email').val()),
-                question: $.trim($('#question').val()),
-                answer: $.trim($('#answer').val())
+                password: $.trim($('#password').val()),
+                passwordNew: $.trim($('#new-password').val()),
+                passwordConfirm: $.trim($('#confirm-password').val()),
             };
             const validateRes = this.formValidate(userInfo);
             if (validateRes.status) {
-                userService.updateUserInfo(userInfo, (res) => {
+                userService.updatePassword({
+                    passwordOld: userInfo.password,
+                    passwordNew: userInfo.passwordNew
+                }, (res) => {
                     util.successTips("更新成功");
-                    window.location.href = "./center.html";
                 }, (errMsg) => {
                     util.errorTips(errMsg);
                 });
@@ -60,20 +50,19 @@ const center = {
             status: false,
             msg: ""
         };
-        if (!util.validate(formData.phone, "phone")) {
-            res.msg = "请输入正确手机号";
+        // 原密码是否为空
+        if (!util.validate(formData.password, "require")) {
+            res.msg = "原密码不能为空";
             return res;
         }
-        if (!util.validate(formData.email, "email")) {
-            res.msg = "请输入正确邮箱";
+        // 验证新密码
+        if (!formData.passwordNew || formData.passwordNew.length < 6) {
+            res.msg = "密码长度不能少于六位";
             return res;
         }
-        if (!util.validate(formData.question, "require")) {
-            res.msg = "问题不能为空";
-            return res;
-        }
-        if (!util.validate(formData.answer, "require")) {
-            res.msg = "答案不能为空";
+        // 验证两次密码是否一致
+        if (formData.passwordNew !== formData.passwordConfirm) {
+            res.msg = "两次密码不一致";
             return res;
         }
         // 返回正确提示

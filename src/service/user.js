@@ -2,7 +2,7 @@
  * @Author: zhimin
  * @Date: 2020-12-02 13:57:33
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-04 10:35:58
+ * @LastEditTime: 2020-12-06 15:48:47
  * @FilePath: \happy-fe\src\service\user.js
  */
 import util from "util";
@@ -96,7 +96,25 @@ const _user = {
       success: resolve,
       error: reject,
     });
-  }
+  },
+  updateUserInfo(userInfo, resolve, reject) {
+    util.request({
+      url: util.getServerUrl("/api/user/update_information.do"),
+      method: "POST",
+      data: userInfo,
+      success: resolve,
+      error: reject,
+    });
+  },
+  updatePassword(userInfo, resolve, reject) {
+    util.request({
+      url: util.getServerUrl("/api/user/reset_password.do"),
+      method: "POST",
+      data: userInfo,
+      success: resolve,
+      error: reject,
+    });
+  },
 };
 
 export default _user;
