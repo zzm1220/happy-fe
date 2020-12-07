@@ -81,6 +81,7 @@ const config = {
         use: [{
           loader: "url-loader",
           options: {
+            esModule: false,
             limit: 100,
             name: "[name].[ext]",
             outputPath: "resource/",

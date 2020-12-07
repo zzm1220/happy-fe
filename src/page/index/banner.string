@@ -1,0 +1,14 @@
+<!--
+ * @Author: zhimin
+ * @Date: 2020-12-07 16:36:47
+ * @LastEditors: zhimin
+ * @LastEditTime: 2020-12-07 16:37:15
+ * @FilePath: \happy-fe\src\page\index\banner.string
+-->
+<div class="banner">
+    <ul>
+        <li>This is a slide.</li>
+        <li>This is another slide.</li>
+        <li>This is a final slide.</li>
+    </ul>
+</div>
