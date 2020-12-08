@@ -10,9 +10,11 @@ import "page/common";
 import util from "util";
 import "page/common/nav";
 import "page/common/header";
+import "util/slider";
+import bannerTmp from "./banner.string";
 
-const template = "<div>{{name}}</div";
-const data = {
-  name: 123
-};
-console.log(util.renderHtml(template, data));
+$(function () {
+  const tmp = util.renderHtml(bannerTmp);
+  $(".banner-con").html(tmp);
+  $(".banner").unslider();
+});

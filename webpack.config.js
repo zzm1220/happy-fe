@@ -19,13 +19,14 @@ const config = {
   mode: "development",
   entry: {
     index: "./src/page/index",
+    list: "./src/page/list",
     login: "./src/page/login",
     result: "./src/page/result",
     register: "./src/page/register",
     "pass-reset": "./src/page/pass-reset",
     center: "./src/page/center",
     "center-update": "./src/page/center-update",
-    "pass-update": "./src/page/pass-update"
+    "pass-update": "./src/page/pass-update",
   },
   output: {
     filename: "js/[name].js",
@@ -68,9 +69,11 @@ const config = {
     },
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.css$/,
-        use: [{
+        use: [
+          {
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
@@ -78,16 +81,18 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [{
-          loader: "url-loader",
-          options: {
-            esModule: false,
-            limit: 100,
-            name: "[name].[ext]",
-            outputPath: "resource/",
-            publicPath: "../resource/",
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              esModule: false,
+              limit: 100,
+              name: "[name].[ext]",
+              outputPath: "resource/",
+              publicPath: "../resource/",
+            },
           },
-        }, ],
+        ],
       },
       {
         test: /\.string$/,
@@ -101,6 +106,7 @@ const config = {
       chunkFilename: "css/[id].css",
     }),
     new HtmlWebpackPlugin(getHtmlConfig("index", "首页")),
+    new HtmlWebpackPlugin(getHtmlConfig("list", "商品列表页")),
     new HtmlWebpackPlugin(getHtmlConfig("login", "登录")),
     new HtmlWebpackPlugin(getHtmlConfig("result", "操作结果")),
     new HtmlWebpackPlugin(getHtmlConfig("register", "注册")),

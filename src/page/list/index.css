@@ -1,0 +1,33 @@
+.sort-con {
+    overflow: hidden;
+}
+.sort-con .sort-item {
+    position: relative;
+    float: left;
+    padding: 0 8px;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #cccccc;
+    margin-right: -1px;
+    background-color: #ffffff;
+    color: #333333;
+    cursor: pointer;
+}
+.sort-con .sort-item.active {
+    background-color: #c60023;
+    border: 1px solid #c60023;
+    color: #ffffff;
+}
+
+.sort-con .sort-item .fa-sort-desc{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.sort-con .sort-item.asc .fa-sort-desc {
+    opacity: .6;
+}
+.sort-con .sort-item.desc .fa-sort-asc {
+    opacity: .6;
+}
