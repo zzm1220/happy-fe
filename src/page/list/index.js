@@ -21,7 +21,7 @@ const list = {
       categoryId: util.getUrlParam("categoryId") || "",
       orderBy: util.getUrlParam("orderBy") || "default",
       pageNum: util.getUrlParam("pageNum") || 1,
-      pageSize: util.getUrlParam("pageSize") || 20,
+      pageSize: util.getUrlParam("pageSize") || 2,
     },
   },
   init() {
@@ -91,11 +91,16 @@ const list = {
   },
   //  分页信息
   loadPagination(pageInfo) {
-    console.log(pageInfo)
-    this.pagination = new Pagination();
-    this.pagination.render($.extend({}, pageInfo, {
-      container: $(".pagination")
-    }));
+    this.pagination ? "":(this.pagination = new Pagination());
+    this.pagination.render(
+      $.extend({}, pageInfo, {
+        container: $(".pagination"),
+        onSelectPage:pageNum => {
+          this.data.listParam.pageNum = pageNum;
+          this.loadList();
+        }
+      })
+    );
   }
 };
 

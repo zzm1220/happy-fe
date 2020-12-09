@@ -10,12 +10,22 @@ import paginationTmp from "./index.string";
 import util from "util";
 
 const Pagination = function () {
+    const _this = this;
     this.defaultOption = {
         container: null,
         pageNum: 1,
         pageRange: 3,
         onSelectPage: null
     };
+    $(document).on("click", ".pg-item", function(){
+        const $this = $(this);
+        if ($this.hasClass("disabled")||$this.hasClass("active")){
+            return;
+        }
+        typeof _this.option.onSelectPage === "function" 
+            ? _this.option.onSelectPage($this.data("value"))
+            : "";
+    });
 };
 // 渲染分页组件
 Pagination.prototype.render = function (userOption) {
