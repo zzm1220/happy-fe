@@ -69,11 +69,9 @@ const config = {
     },
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
-        use: [
-          {
+        use: [{
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
@@ -81,18 +79,16 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              esModule: false,
-              limit: 100,
-              name: "[name].[ext]",
-              outputPath: "resource/",
-              publicPath: "../resource/",
-            },
+        use: [{
+          loader: "url-loader",
+          options: {
+            esModule: false,
+            limit: 100,
+            name: "[name].[ext]",
+            outputPath: "resource/",
+            publicPath: "../resource/",
           },
-        ],
+        }, ],
       },
       {
         test: /\.string$/,
@@ -121,7 +117,7 @@ const config = {
     openPage: "dist/view/index.html",
     proxy: {
       "/api": {
-        target: "http://test.happymmall.com",
+        target: "http://www.happymmall.com",
         pathRewrite: {
           "^/api": "",
         },
