@@ -27,6 +27,7 @@ const config = {
     center: "./src/page/center",
     "center-update": "./src/page/center-update",
     "pass-update": "./src/page/pass-update",
+    detail: "./src/page/detail"
   },
   output: {
     filename: "js/[name].js",
@@ -110,6 +111,7 @@ const config = {
     new HtmlWebpackPlugin(getHtmlConfig("center", "个人中心")),
     new HtmlWebpackPlugin(getHtmlConfig("center-update", "修改个人信息")),
     new HtmlWebpackPlugin(getHtmlConfig("pass-update", "修改密码")),
+    new HtmlWebpackPlugin(getHtmlConfig("detail", "商品详情页")),
   ],
   devServer: {
     contentBase: "./dist",
@@ -117,7 +119,7 @@ const config = {
     openPage: "dist/view/index.html",
     proxy: {
       "/api": {
-        target: "http://www.happymmall.com",
+        target: "http://test.happymmall.com/",
         pathRewrite: {
           "^/api": "",
         },

@@ -2,7 +2,7 @@
  * @Author: zhimin
  * @Date: 2020-12-09 09:54:18
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-09 13:34:37
+ * @LastEditTime: 2020-12-10 14:42:45
  * @FilePath: \happy-fe\src\page\list\index.string
 -->
 {{#list}}
@@ -21,4 +21,7 @@
         <a href="./detail.html?productId={{id}}" class="p-intro" target="_blank">{{name}}</a>
     </div>
 </li>
+{{/list}}
+{{^list}}
+<p class="err-tip">很抱歉，实在找不到您要的商品</p>
 {{/list}}

@@ -2,8 +2,8 @@
  * @Author: zhimin
  * @Date: 2020-12-02 13:57:33
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-06 15:48:47
- * @FilePath: \happy-fe\src\service\user.js
+ * @LastEditTime: 2020-12-10 14:45:08
+ * @FilePath: \happy-fe\src\service\product.js
  */
 import util from "util";
 
@@ -18,6 +18,17 @@ const _product = {
       error: reject,
     });
   },
+  getProductDetail(productId, resolve, reject) {
+    util.request({
+      url: util.getServerUrl("/api/product/detail.do"),
+      method: "POST",
+      data: {
+        productId
+      },
+      success: resolve,
+      error: reject,
+    });
+  }
 };
 
 export default _product;
