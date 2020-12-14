@@ -1,0 +1,122 @@
+<!--
+ * @Author: zhimin
+ * @Date: 2020-12-10 10:07:52
+ * @LastEditors: zhimin
+ * @LastEditTime: 2020-12-14 16:38:04
+ * @FilePath: \happy-fe\src\view\order-confirm.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%= require("html-loader!./layout/head-common.html") %>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+    <%= require("html-loader!./layout/nav.html") %>
+    <%= require("html-loader!./layout/header.html") %>
+    <div class="crumb">
+        <div class="w">
+            <a href="./index.html" class="link">MMall</a>
+            <span>></span>
+            <span class="link-text"><%= htmlWebpackPlugin.options.title %></span>
+        </div>
+    </div>
+    <div class="order-wrap w">
+        <div class="panel">
+            <h1 class="panel-title">收货地址</h1>
+            <div class="panel-body address-con">
+                <div class="address-item active">
+                    <h2 class="address-title">
+                        <span class="city">北京 海淀</span>
+                        <span class="name">(zhao 收)</span>
+                    </h2>
+                    <div class="address-detail">
+                        <span class="detail">朝阳区高碑店</span>
+                        <span class="telephone">15652993018</span>
+                    </div>
+                    <div class="address-operate">
+                        <span class="link address-update">编辑</span>
+                        <span class="link address-delete">删除</span>
+                    </div>
+                </div>
+                <div class="address-item">
+                    <h2 class="address-title">
+                        <span class="city">北京 海淀</span>
+                        <span class="name">(zhao 收)</span>
+                    </h2>
+                    <div class="address-detail">
+                        <span class="detail">朝阳区高碑店</span>
+                        <span class="telephone">15652993018</span>
+                    </div>
+                    <div class="address-operate">
+                        <span class="link address-update">编辑</span>
+                        <span class="link address-delete">删除</span>
+                    </div>
+                </div>
+                <div class="address-item add">
+                    <i class="fa fa-plus"></i>
+                    <div class="text">使用新地址</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <h1 class="panel-title">商品清单</h1>
+            <div class="panel-body product-con">
+                <div class="head">
+                    <span class="product-desc">商品描述</span>
+                    <span class="product-price">价格</span>
+                    <span class="product-num">数量</span>
+                    <span class="product-all">小计</span>
+                </div>
+                <div class="list">
+                    <div class="product-item">
+                        <span class="item-desc">
+                            <a href="./detail.html?product=" class="link" target="_blank">
+                                <img src="http://img.happymmall.com/efebbe9d-dc55-418d-a53a-f8029db0e792.jpg"
+                                    alt="华为 HUAWEI P20 AI智慧全面屏 6GB +64GB 宝石蓝 全网通版 移动联通电信4G手机 双卡双待">
+                                <span class="p-name">华为 HUAWEI P20 AI智慧全面屏 6GB +64GB 宝石蓝 全网通版 移动联通电信4G手机 双卡双待</span>
+                            </a>
+                        </span>
+                        <span class="item-price">
+                            ￥3411
+                        </span>
+                        <span class="item-num">
+                            ×5
+                        </span>
+                        <span class="item-all">
+                            ￥22310
+                        </span>
+                    </div>
+                    <div class="product-item">
+                        <span class="item-desc">
+                            <a href="./detail.html?product=" class="link">
+                                <img src="http://img.happymmall.com/efebbe9d-dc55-418d-a53a-f8029db0e792.jpg"
+                                    alt="华为 HUAWEI P20 AI智慧全面屏 6GB +64GB 宝石蓝 全网通版 移动联通电信4G手机 双卡双待">
+                                <span class="p-name">华为 HUAWEI P20 AI智慧全面屏 6GB +64GB 宝石蓝 全网通版 移动联通电信4G手机 双卡双待</span>
+                            </a>
+                        </span>
+                        <span class="item-price">
+                            ￥3411
+                        </span>
+                        <span class="item-num">
+                            ×5
+                        </span>
+                        <span class="item-all">
+                            ￥22310
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-footer">
+            <span>订单总价：</span>
+            <span class="submit-total">￥11123</span>
+            <span class="btn order-submit">提交订单</span>
+        </div>
+    </div>
+    <%= require("html-loader!./layout/footer.html") %>
+</body>
+
+</html>

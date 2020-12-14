@@ -2,7 +2,7 @@
  * @Author: zhimin
  * @Date: 2020-12-10 10:06:21
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-14 10:16:51
+ * @LastEditTime: 2020-12-14 11:02:44
  * @FilePath: \happy-fe\src\page\cart\index.js
  */
 import "./index.css";
@@ -145,7 +145,7 @@ const cart = {
         // 去结算
         $(document).on("click", ".submit-btn", function () {
             if (_this.data.cartInfo && _this.data.cartInfo.cartTotalPrice > 0) {
-                window.location.href = "./confirm.html";
+                window.location.href = "./order-confirm.html";
             } else {
                 util.errorTips("请选择商品再提交");
             }
