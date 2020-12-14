@@ -2,13 +2,13 @@
  * @Author: zhimin
  * @Date: 2020-12-10 10:06:21
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-11 17:45:43
+ * @LastEditTime: 2020-12-14 10:16:51
  * @FilePath: \happy-fe\src\page\cart\index.js
  */
 import "./index.css";
 import "page/common";
 import util from "util";
-import "page/common/nav";
+import nav from "page/common/nav";
 import "page/common/header";
 import cartTmp from "./index.string";
 import cartService from "service/cart";
@@ -91,11 +91,12 @@ const cart = {
             console.log($this)
             const $pCount = $this.siblings(".count-input");
             let currentVal = parseInt($pCount.val(), 10);
-            const type = $this.hasClass(".minus") ? "minus" : "plus";
+            const type = $this.hasClass("minus") ? "minus" : "plus";
             const productId = $this.parents(".cart-item").data("product-id");
             const minCnt = 1;
             const maxCnt = parseInt($pCount.data("max"), 10);
             let newCount = currentVal;
+            console.log(type)
             if (type === "plus") {
                 if (currentVal >= maxCnt) {
                     util.errorTips("库存不够拉");
@@ -121,6 +122,7 @@ const cart = {
         // 删除单个商品
         $(document).on("click", ".del-operate", function () {
             if (window.confirm("确认要删除该商品吗?")) {
+                const $this = $(this);
                 const productId = $this.parents(".cart-item").data("product-id");
                 _this.deleteCartProduct(productId);
             }
@@ -142,7 +144,6 @@ const cart = {
         });
         // 去结算
         $(document).on("click", ".submit-btn", function () {
-            const $this = $(this);
             if (_this.data.cartInfo && _this.data.cartInfo.cartTotalPrice > 0) {
                 window.location.href = "./confirm.html";
             } else {
@@ -165,6 +166,8 @@ const cart = {
         // 生成html
         let cartHtml = util.renderHtml(cartTmp, this.data.cartInfo);
         this.$cartWrap.html(cartHtml);
+        // 通知导航的购物车更新数量
+        nav.loadCartCount();
     },
     filter(data) {
         data.notEmpty = !!data.cartProductVoList.length;
@@ -173,7 +176,11 @@ const cart = {
         this.$cartWrap.html("<p class='err-tip'>哪里不对啦，刷新下试试吧</p>");
     },
     deleteCartProduct(productIds) {
-
+        cartService.deleteProduct(productIds, res => {
+            this.renderCart(res);
+        }, err => {
+            this.showCartError(err);
+        })
     }
 };
 

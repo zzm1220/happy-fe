@@ -2,7 +2,7 @@
  * @Author: zhimin
  * @Date: 2020-12-02 14:09:31
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-11 17:19:26
+ * @LastEditTime: 2020-12-14 10:05:16
  * @FilePath: \happy-fe\src\service\cart.js
  */
 import util from "util";
@@ -79,6 +79,18 @@ const _cart = {
         util.request({
             url: util.getServerUrl("/api/cart/update.do"),
             data: productInfo,
+            method: "POST",
+            success: resolve,
+            error: reject
+        })
+    },
+    // 删除商品
+    deleteProduct(productIds, resolve, reject) {
+        util.request({
+            url: util.getServerUrl("/api/cart/delete_product.do"),
+            data: {
+                productIds
+            },
             method: "POST",
             success: resolve,
             error: reject
