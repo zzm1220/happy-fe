@@ -4,7 +4,8 @@
     flex-direction: row;
 }
 
-.address-item {
+.address-item,
+.address-new {
     flex-basis: 200px;
     margin: 20px 20px 0 0;
     padding: 5px 8px 2px;
@@ -36,7 +37,8 @@
     border: 3px dashed #c60023;
 }
 
-.address-item:hover {
+.address-item:hover,
+.address-new:hover {
     background: #eeeeee;
 }
 
@@ -44,13 +46,13 @@
     visibility: visible;
 }
 
-.address-item.add {
+.address-new.add {
     padding: 6px;
     text-align: center;
     color: #cccccc;
 }
 
-.address-item.add .fa {
+.address-new.add .fa {
     font-size: 50px;
     line-height: 50px;
 }
@@ -142,3 +144,70 @@
     margin-right: 30px;
     vertical-align: middle;
 }
+
+/* modal部分 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #eeeeee;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal-container {
+    width: 700px;
+    margin: 50px auto;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+.modal-container .modal-header {
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid #cccccc;
+}
+.modal-header .modal-title {
+    font-size: 14px;
+
+}
+.modal-header .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.modal-container .modal-body {
+    padding: 15px;
+}
+
+.form .form-line {
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.form .form-line .label {
+    display: block;
+    float: left;
+    width: 80px;
+    margin-right: 10px;
+    text-align: right;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.form .form-line .form-item {
+    padding: 0 5px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 10px;
+}
+
+.form .form-line .address-btn {
+    margin-left: 90px;
+    font-size: 13px;
+}  
