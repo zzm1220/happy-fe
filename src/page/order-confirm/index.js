@@ -16,8 +16,6 @@ import productTmp from "./product-list.string";
 import orderService from "service/order";
 import addressService from "service/address";
 
-
-
 const orderConfirm = {
   data: {
     selectedAddressId: null,
@@ -31,65 +29,88 @@ const orderConfirm = {
     this.loadProductList();
   },
   bindEvent() {
-      const _this = this;
-      //地址的选择
-      $(document).on("click", ".address-item", function(){
-        $(this).addClass("active")
-            .siblings(".address-item")
-            .removeClass("active");
-        _this.data.selectedAddressId = $(this).data("id");
-      });
-      //订单的提交
-      $(document).on("click", ".order-submit", function () {
-        const shippingId = _this.data.selectedAddressId;
-        if (shippingId) {
-            orderService.createOrder(
-              {
-                shippingId,
-              },
-              (res) => {
-                window.location.href =
-                  "./payment.html?orderNumber=" + res.orderNo;
-              },
-              (errMsg) => {
-                util.errorTips(errMsg);
-              }
-            );
-        } else {
-            util.errorTips("请选择地址后提交");
+    const _this = this;
+    //地址的选择
+    $(document).on("click", ".address-item", function () {
+      $(this)
+        .addClass("active")
+        .siblings(".address-item")
+        .removeClass("active");
+      _this.data.selectedAddressId = $(this).data("id");
+    });
+    //订单的提交
+    $(document).on("click", ".order-submit", function () {
+      const shippingId = _this.data.selectedAddressId;
+      if (shippingId) {
+        orderService.createOrder(
+          {
+            shippingId,
+          },
+          (res) => {
+            window.location.href = "./payment.html?orderNumber=" + res.orderNo;
+          },
+          (errMsg) => {
+            util.errorTips(errMsg);
+          }
+        );
+      } else {
+        util.errorTips("请选择地址后提交");
+      }
+    });
+    // 地址的添加
+    $(document).on("click", ".address-new", function () {
+      addressModal.show({
+        isUpdate: false,
+        onSuccess: function () {
+          _this.loadAddressList();
         }
       });
-      // 地址的添加
-      $(document).on("click", ".address-new", function(){
-        addressModal.show({
-          isUpdate: false,
-          onSuccess: function() {
-            _this.loadAddressList();
-          },
-          onError: function() {
-          }
-        });
-      });
-  },
-  loadAddressList() {
-    addressService.getAddressList(res=>{
-    const addressHtml = util.renderHtml(addressTmp,res);
-    $(".address-con").html(addressHtml);
-    },errMsg => {
-    $(".address-con").html("<p class='err-tip'>地址加载失败哦</p>");
+    });
+    // 地址的编辑
+    $(document).on("click", ".address-update", function () {
+      // 读取该条地址的信息
+      const shippingId = $(this).parents(".address-item").data("id");
+      addressService.getAddress(
+        shippingId,
+        (res) => {
+          addressModal.show({
+            isUpdate: true,
+            data: res,
+            onSuccess: function () {
+              _this.loadAddressList();
+            }
+          });
+        },
+        (errMsg) => {
+          util.errorTips(errMsg);
+        }
+      );
     });
   },
-  loadProductList() {
-    orderService.getProductList(res => {
-        const productHtml = util.renderHtml(productTmp, res);
-            $(".product-con").html(productHtml);
-        }, errMsg => {
-            $(".product-con").html("<p class='err-tip'>订单加载失败哦</p>");
-        }
+  loadAddressList() {
+    addressService.getAddressList(
+      (res) => {
+        const addressHtml = util.renderHtml(addressTmp, res);
+        $(".address-con").html(addressHtml);
+      },
+      (errMsg) => {
+        $(".address-con").html("<p class='err-tip'>地址加载失败哦</p>");
+      }
     );
-  }
+  },
+  loadProductList() {
+    orderService.getProductList(
+      (res) => {
+        const productHtml = util.renderHtml(productTmp, res);
+        $(".product-con").html(productHtml);
+      },
+      (errMsg) => {
+        $(".product-con").html("<p class='err-tip'>订单加载失败哦</p>");
+      }
+    );
+  },
 };
 
 $(function () {
-    orderConfirm.init();
-})
+  orderConfirm.init();
+});

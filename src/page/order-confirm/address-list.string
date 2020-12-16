@@ -2,7 +2,7 @@
 <div class="address-item" data-id="{{id}}">
     <h2 class="address-title">
         <span class="city">{{receiverProvince}} {{receiverCity}}</span>
-        <span class="name">({receiverName} 收)</span>
+        <span class="name">({{receiverName}} 收)</span>
     </h2>
     <div class="address-detail">
         <span class="detail">{{receiverAddress}}</span>

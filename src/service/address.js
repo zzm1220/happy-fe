@@ -13,26 +13,29 @@ const _order = {
     util.request({
       url: util.getServerUrl("/api/shipping/list.do"),
       data: {
-          pageSize: 50
+        pageSize: 50,
       },
       success: resolve,
       error: reject,
     });
   },
-  // 添加商品到购物车
-  addToCart(productInfo, resolve, reject) {
+  // 新建收件人
+  saveAddress(receiverInfo, resolve, reject) {
     util.request({
-      url: util.getServerUrl("/api/cart/add.do"),
-      data: productInfo,
+      url: util.getServerUrl("/api/shipping/add.do"),
+      data: receiverInfo,
       method: "POST",
       success: resolve,
       error: reject,
     });
   },
-  // 获取购物车列表
-  getCartList(resolve, reject) {
+  // 获取指定地址
+  getAddress(shippingId, resolve, reject) {
     util.request({
-      url: util.getServerUrl("/api/cart/list.do"),
+      url: util.getServerUrl("/api/shipping/select.do"),
+      data: {
+        shippingId,
+      },
       success: resolve,
       error: reject,
     });
