@@ -7,6 +7,7 @@ const addressModal = {
   show(option) {
     // 绑定option
     this.option = option;
+    this.option.data = option.data || {};
     this.$modalWrap = this.option.wrap || $(".modal-wrap");
     // 渲染html
     this.loadModal();
@@ -24,8 +25,6 @@ const addressModal = {
     this.$modalWrap.html(modalHtml);
     // 加载省份
     this.loadProvince();
-    // 加载城市
-    this.loadCities();
   },
   bindEvent() {
     const _this = this;
@@ -51,12 +50,25 @@ const addressModal = {
       }
       // 更新收件地址且验证通过
       else if (isUpdate && receiverInfo.status) {
+         addressService.updateAddress(
+           receiverInfo.data,
+           (res) => {
+             util.successTips("地址更新成功");
+             _this.hide();
+             typeof _this.option.onSuccess === "function" &&
+               _this.option.onSuccess(res);
+           },
+           (errMsg) => {
+             util.errorTips(errMsg);
+           }
+         );
       }
       // 验证不通过
       else {
         util.errorTips(receiverInfo.errMsg||"出错啦～～");
       }
     });
+    // 阻止事件冒泡
     this.$modalWrap.find(".modal-container").click(function(e){
         e.stopPropagation();
     });
@@ -70,12 +82,22 @@ const addressModal = {
     const provinces = cities.getProvinces() || [];
     const $provinceSelect = this.$modalWrap.find("#province");
     $provinceSelect.html(this.getSelectOption(provinces));
+    // 如果是更新地址，并且有省份的数据，做回填
+    if (this.option.isUpdate && this.option.data.receiverProvince) {
+      $provinceSelect.val(this.option.data.receiverProvince);
+      // 加载城市
+      this.loadCities(this.option.data.receiverProvince);
+    }
   },
   // 加载城市
   loadCities(provinceName) {
     const _cities = cities.getCities(provinceName) || [];
     const $citySelect = this.$modalWrap.find("#city");
     $citySelect.html(this.getSelectOption(_cities));
+    // 如果是更新地址，并且有城市的数据，做回填
+    if (this.option.isUpdate && this.option.data.receiverCity) {
+      $citySelect.val(this.option.data.receiverCity);
+    }
   },
   getSelectOption(optionArr) {
     let defaultHtml = '<option value="">请选择</option>';
@@ -96,6 +118,9 @@ const addressModal = {
     receiverInfo.receiverAddress = $("#receiver-address").val();
     receiverInfo.receiverMobile = $("#receiver-phone").val();
     receiverInfo.receiverZip = $("#receiver-zip").val();
+    if (this.option.isUpdate) {
+      receiverInfo.id = $("#receiver-id").val();
+    }
     if (!receiverInfo.receiverName) {
       result.errMsg = "请输入收件人姓名";
     } else if (!receiverInfo.receiverProvince) {

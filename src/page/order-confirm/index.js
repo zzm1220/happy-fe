@@ -63,11 +63,12 @@ const orderConfirm = {
         isUpdate: false,
         onSuccess: function () {
           _this.loadAddressList();
-        }
+        },
       });
     });
     // 地址的编辑
-    $(document).on("click", ".address-update", function () {
+    $(document).on("click", ".address-update", function (e) {
+      e.stopPropagation();
       // 读取该条地址的信息
       const shippingId = $(this).parents(".address-item").data("id");
       addressService.getAddress(
@@ -78,7 +79,7 @@ const orderConfirm = {
             data: res,
             onSuccess: function () {
               _this.loadAddressList();
-            }
+            },
           });
         },
         (errMsg) => {
@@ -86,10 +87,27 @@ const orderConfirm = {
         }
       );
     });
+    // 地址的删除
+    $(document).on("click", ".address-delete", function (e) {
+      e.stopPropagation();
+      const shippingId = $(this).parents(".address-item").data("id");
+      if (window.confirm("你确认要删除该地址吗？")) {
+        addressService.deleteAddress(
+          shippingId,
+          (res) => {
+            _this.loadAddressList();
+          },
+          (errMsg) => {
+            util.errorTips(errMsg);
+          }
+        );
+      }
+    });
   },
   loadAddressList() {
     addressService.getAddressList(
       (res) => {
+        this.addressFilter(res);
         const addressHtml = util.renderHtml(addressTmp, res);
         $(".address-con").html(addressHtml);
       },
@@ -109,6 +127,21 @@ const orderConfirm = {
       }
     );
   },
+  addressFilter(data) {
+     if (this.data.selectedAddressId) {
+       let selectedAddressIdFlag = false;
+       for(let i = 0,
+         len = data.list.length; i < len; i++) {
+         if (data.list[i].id === this.data.selectedAddressId){
+           data.list[i].isActive = true;
+           selectedAddressIdFlag = true;
+         }
+       }
+       if (!selectedAddressIdFlag) {
+         this.data.selectedAddressId = null;
+       }
+     }
+  }
 };
 
 $(function () {

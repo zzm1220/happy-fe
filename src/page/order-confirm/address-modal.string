@@ -24,6 +24,7 @@
                     <select name="province" id="province" class="form-item">
                     </select>
                     <select name="city" id="city" class="form-item">
+                        <option value="请选择">请选择</option>
                     </select>
                 </div>
                 <div class="form-line">
@@ -48,6 +49,7 @@
                     value="{{data.receiverZip}}"/>
                 </div>
                 <div class="form-line">
+                    <input type="hidden" id="receiver-id" value="{{data.id}}">
                     <a class="btn address-btn">保存收获地址</a>
                 </div>
             </div>
