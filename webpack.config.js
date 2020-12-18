@@ -29,7 +29,9 @@ const config = {
     "pass-update": "./src/page/pass-update",
     detail: "./src/page/detail",
     cart: "./src/page/cart",
-    "order-confirm": "./src/page/order-confirm"
+    "order-confirm": "./src/page/order-confirm",
+    "order-list": "./src/page/order-list",
+    "order-detail": "./src/page/order-detail"
   },
   output: {
     filename: "js/[name].js",
@@ -115,7 +117,9 @@ const config = {
     new HtmlWebpackPlugin(getHtmlConfig("pass-update", "修改密码")),
     new HtmlWebpackPlugin(getHtmlConfig("detail", "商品详情页")),
     new HtmlWebpackPlugin(getHtmlConfig("cart", "购物车")),
-    new HtmlWebpackPlugin(getHtmlConfig("order-confirm", "订单确认页面"))
+    new HtmlWebpackPlugin(getHtmlConfig("order-confirm", "订单确认页")),
+    new HtmlWebpackPlugin(getHtmlConfig("order-list", "订单列表页")),
+    new HtmlWebpackPlugin(getHtmlConfig("order-detail", "订单详情页"))
   ],
   devServer: {
     contentBase: "./dist",

@@ -1,0 +1,73 @@
+<!--
+ * @Author: zhimin
+ * @Date: 2020-12-18 10:31:02
+ * @LastEditors: zhimin
+ * @LastEditTime: 2020-12-18 15:11:20
+ * @FilePath: \happy-fe\src\page\order-detail\index.string
+-->
+<div class="panel">
+    <div class="panel-title">订单信息</div>
+    <div class="panel-body">
+        <div class="order-detail-con">
+            <div class="text-line info">
+                <span class="orderNo">订单号：{{orderNo}}</span>
+                <span class="createTime">创建时间：{{createTime}}</span>
+            </div>
+            <div class="text-line receiver">
+                <span class="name">收件人：{{receiverName}}</span>
+                <span class="city">{{shippingVo.receiverProvince}} {{shippingVo.receiverCity}}</span>
+                <span class="address">{{shippingVo.receiverAddress}}</span>
+                <span class="phone">{{shippingVo.receiverMobile}}</span>
+            </div>
+            <div class="text-line status">
+                <span>订单状态：{{statusDesc}}</span>
+            </div>
+            <div class="text-line payway">
+                <span>支付方式：{{paymentTypeDesc}}</span>
+            </div>
+            <div class="text-line payment">
+                {{#needPay}}
+                <a href="./payment" class="btn">去支付</a>
+                {{/needPay}}
+                {{#isCancelable}}
+                <a class="btn order-cancel">取消订单</a>
+                {{/isCancelable}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-title">商品清单</div>
+    <div class="panel-body">
+        <table class="order-detail-table">
+            <tr class="header">
+                <th class="cell cell-img">&nbsp;</th>
+                <th class="cell cell-info">商品信息</th>
+                <th class="cell cell-price">单价</th>
+                <th class="cell cell-count">数量</th>
+                <th class="cell cell-total">合计</th>
+            </tr>
+            {{#orderItemVoList}}
+            <tr>
+                <td class="cell cell-img">
+                    <a href="./detail.html?productId={{productId}}">
+                        <img class="p-img" src="{{imageHost}}{{productImage}}" alt="{{productName}}">
+                    </a>
+                </td>
+                <td class="cell cell-info">
+                    <a href="./detail.html?productId={{productId}}">
+                        <span class="p-intro">{{productName}}</span>
+                    </a>
+                </td>
+                <td class="cell cell-price">￥{{currentUnitPrice}}</td>
+                <td class="cell cell-count">{{quantity}}</td>
+                <td class="cell cell-total">￥{{totalPrice}}</td>
+            </tr>
+            {{/orderItemVoList}}
+        </table>
+        <p class="total">
+            <span>订单总价：</span>
+            <span class="total-price">￥{{payment}}</span>
+        </p>
+    </div>
+</div>

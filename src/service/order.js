@@ -2,7 +2,7 @@
  * @Author: zhimin
  * @Date: 2020-12-02 14:09:31
  * @LastEditors: zhimin
- * @LastEditTime: 2020-12-14 13:13:20
+ * @LastEditTime: 2020-12-18 15:16:35
  * @FilePath: \happy-fe\src\service\order.js
  */
 import util from "util";
@@ -25,72 +25,33 @@ const _order = {
       error: reject,
     });
   },
-  // 获取购物车列表
-  getCartList(resolve, reject) {
+  // 获取订单列表
+  getOrderList(listParam, resolve, reject) {
     util.request({
-      url: util.getServerUrl("/api/cart/list.do"),
+      url: util.getServerUrl("/api/order/list.do"),
+      data: listParam,
       success: resolve,
       error: reject,
     });
   },
-  // 选择购物车商品
-  selectProduct(productId, resolve, reject) {
+  // 获取订单详情
+  getOrderDetail(orderNumber, resolve, reject) {
     util.request({
-      url: util.getServerUrl("/api/cart/select.do"),
+      url: util.getServerUrl("/api/order/detail.do"),
       data: {
-        productId,
+        orderNo: orderNumber
       },
-      method: "POST",
       success: resolve,
       error: reject,
     });
   },
-  // 取消选择购物车商品
-  unselectProduct(productId, resolve, reject) {
+  // 取消订单
+  cancelOrder(orderNumber, resolve, reject) {
     util.request({
-      url: util.getServerUrl("/api/cart/un_select.do"),
+      url: util.getServerUrl("/api/order/cancel.do"),
       data: {
-        productId,
+        orderNo: orderNumber
       },
-      method: "POST",
-      success: resolve,
-      error: reject,
-    });
-  },
-  // 选择全部商品
-  selectAllProduct(resolve, reject) {
-    util.request({
-      url: util.getServerUrl("/api/cart/select_all.do"),
-      success: resolve,
-      error: reject,
-    });
-  },
-  // 取消选择全部商品
-  unselectAllProduct(resolve, reject) {
-    util.request({
-      url: util.getServerUrl("/api/cart/un_select_all.do"),
-      success: resolve,
-      error: reject,
-    });
-  },
-  // 更新商品信息
-  updateProduct(productInfo, resolve, reject) {
-    util.request({
-      url: util.getServerUrl("/api/cart/update.do"),
-      data: productInfo,
-      method: "POST",
-      success: resolve,
-      error: reject,
-    });
-  },
-  // 删除商品
-  deleteProduct(productIds, resolve, reject) {
-    util.request({
-      url: util.getServerUrl("/api/cart/delete_product.do"),
-      data: {
-        productIds,
-      },
-      method: "POST",
       success: resolve,
       error: reject,
     });
