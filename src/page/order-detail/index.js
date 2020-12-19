@@ -5,13 +5,6 @@
  * @LastEditTime: 2020-12-18 15:30:14
  * @FilePath: \happy-fe\src\page\order-detail\index.js
  */
-/*
- * @Author: zhimin
- * @Date: 2020-12-18 10:28:59
- * @LastEditors: zhimin
- * @LastEditTime: 2020-12-18 13:43:16
- * @FilePath: \happy-fe\src\page\order-list\index.js
- */
 import "./index.css";
 import "page/common/nav";
 import "page/common/header";

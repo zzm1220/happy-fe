@@ -31,7 +31,8 @@ const config = {
     cart: "./src/page/cart",
     "order-confirm": "./src/page/order-confirm",
     "order-list": "./src/page/order-list",
-    "order-detail": "./src/page/order-detail"
+    "order-detail": "./src/page/order-detail",
+    payment: "./src/page/payment",
   },
   output: {
     filename: "js/[name].js",
@@ -74,9 +75,11 @@ const config = {
     },
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.css$/,
-        use: [{
+        use: [
+          {
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
@@ -84,16 +87,18 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf)\??.*$/,
-        use: [{
-          loader: "url-loader",
-          options: {
-            esModule: false,
-            limit: 100,
-            name: "[name].[ext]",
-            outputPath: "resource/",
-            publicPath: "../resource/",
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              esModule: false,
+              limit: 100,
+              name: "[name].[ext]",
+              outputPath: "resource/",
+              publicPath: "../resource/",
+            },
           },
-        }, ],
+        ],
       },
       {
         test: /\.string$/,
@@ -119,7 +124,8 @@ const config = {
     new HtmlWebpackPlugin(getHtmlConfig("cart", "购物车")),
     new HtmlWebpackPlugin(getHtmlConfig("order-confirm", "订单确认页")),
     new HtmlWebpackPlugin(getHtmlConfig("order-list", "订单列表页")),
-    new HtmlWebpackPlugin(getHtmlConfig("order-detail", "订单详情页"))
+    new HtmlWebpackPlugin(getHtmlConfig("order-detail", "订单详情页")),
+    new HtmlWebpackPlugin(getHtmlConfig("payment", "订单支付")),
   ],
   devServer: {
     contentBase: "./dist",
