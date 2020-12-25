@@ -1,0 +1,90 @@
+/*
+ * @Author: zhimin
+ * @Date: 2020-12-03 13:40:45
+ * @LastEditors: zhimin
+ * @LastEditTime: 2020-12-04 11:01:28
+ * @FilePath: \happy-fe\src\page\register\index.css
+ */
+/* 登录页面外层容器 */
+.page-wrap {
+    padding: 40px 0;
+    background: #e72955;
+}
+
+/* 用户登录表单框 */
+.page-wrap .user-con {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    overflow: hidden;
+}
+
+.page-wrap .user-con .user-title {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #dddddd;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666666;
+}
+
+.page-wrap .user-con .user-box {
+    padding: 20px;
+}
+
+.page-wrap .user-con .error-item {
+    position: relative;
+    padding: 4px 0 4px 14px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    color: red;
+    background-color: #fde9e9;
+    display: none;
+}
+
+.page-wrap .user-con .error-icon {
+    float: left;
+    margin-top: 3px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.page-wrap .user-con .user-item {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #bdbdbd;
+}
+
+.user-con .user-item .label {
+    width: 40px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    color: #d3d3d3;
+    text-align: center;
+    background: #f3f3f3;
+    border-right: 1px solid#bdbdbd;
+}
+
+.user-con .user-item .input {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.page-wrap .user-con .btn-submit {
+    box-sizing: border-box;
+    width: 360px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.user-con .link-item {
+    padding: 20px 0;
+    float: right;
+}
+
+.user-con .link-item .link {
+    margin-left: 10px;
+    color: #666666;
+}

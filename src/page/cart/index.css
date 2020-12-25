@@ -1,0 +1,192 @@
+.cart-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-header {
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #eeeeee;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.check-all {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 130px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.check-all input {
+    vertical-align: middle;
+}
+
+.check-all label {
+    vertical-align: middle;
+}
+
+.product-msg {
+    flex-basis: 400px;
+    text-align: left;
+}
+
+.single-price {
+    flex-basis: 100px;
+}
+
+.product-num {
+    flex-basis: 200px;
+}
+
+.total-price {
+    flex-basis: 100px;
+}
+
+.operate {
+    flex-basis: 110px;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dddddd;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 103px;
+    text-align: center;
+}
+
+.cart-item .item-select {
+    flex-basis: 50px;
+    text-align: left;
+}
+
+.cart-item .item-img {
+    flex-basis: 480px;
+    height: 103px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cart-item .item-img img {
+    width: 80px;
+    height: 80px;
+}
+
+.cart-item .item-img .item-intro {
+    width: 400px;
+}
+
+.item-price {
+    flex-basis: 100px;
+}
+
+.item-count {
+    flex-basis: 200px;
+}
+
+.count-btn {
+    display: inline-block;
+    width: 20px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+    cursor: pointer;
+    background: #fff;
+    user-select: none;
+}
+
+.count-input {
+    width: 60px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    outline: none;
+}
+
+.item-total {
+    flex-basis: 100px;
+    color: #000;
+    font-weight: 700;
+}
+
+.item-operate {
+    flex-basis: 110px;
+}
+
+.cart-footer {
+    display: flex;
+    height: 50px;
+    background: #eeeeee;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-con {
+    display: flex;
+    flex: 1;
+}
+
+.check-select {
+    flex-basis: 60px;
+    text-align: right;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+.check-select input {
+    vertical-align: middle;
+}
+
+.check-select label {
+    vertical-align: middle;
+}
+
+
+.delete-icon {
+    flex-basis: 62px;
+    color: #999;
+    cursor: pointer;
+}
+
+.right-con {
+    display: flex;
+    flex-shrink: 0;
+    flex-basis: 210px;
+    align-items: center;
+}
+
+.all-price {
+    flex-basis: 110px;
+    margin-right: 8px;
+}
+
+.money {
+    font-size: 18px;
+    color: #c60023;
+    font-weight: 700;
+}
+
+.check-price {
+    flex-basis: 92px;
+
+}
+
+.submit-btn {
+    height: 50px;
+    line-height: 50px;
+}

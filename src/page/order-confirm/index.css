@@ -1,0 +1,213 @@
+/* 地址部分样式 */
+.address-con {
+    display: flex;
+    flex-direction: row;
+}
+
+.address-item,
+.address-new {
+    flex-basis: 200px;
+    margin: 20px 20px 0 0;
+    padding: 5px 8px 2px;
+    border: 3px dashed #cccccc;
+}
+
+.address-item .address-title {
+    font-weight: normal;
+    font-size: 12px;
+    color: #666;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ddd;
+}
+
+.address-item .address-detail {
+    margin-top: 5px;
+    height: 40px;
+    overflow: hidden;
+    color: #666;
+}
+
+.address-item .address-operate {
+    text-align: right;
+    visibility: hidden;
+    transition: visibility .3s ease;
+}
+
+.address-item.active {
+    border: 3px dashed #c60023;
+}
+
+.address-item:hover,
+.address-new:hover {
+    background: #eeeeee;
+}
+
+.address-item:hover .address-operate {
+    visibility: visible;
+}
+
+.address-new.add {
+    padding: 6px;
+    text-align: center;
+    color: #cccccc;
+}
+
+.address-new.add .fa {
+    font-size: 50px;
+    line-height: 50px;
+}
+
+/* 订单列表样式 */
+.product-con {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-con .head {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dotted #ddd;
+}
+
+.product-con .head span {
+    width: 316px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.product-con .head .product-desc {
+    box-sizing: border-box;
+    width: 432px;
+    padding-left: 108px;
+    text-align: left;
+}
+
+.product-con .list {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-con .list .product-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px dotted #ddd;
+}
+
+.product-item span {
+    flex-shrink: 0;
+}
+
+.product-item .item-desc {
+    box-sizing: border-box;
+    width: 432px;
+    flex-shrink: 0;
+}
+
+.item-desc img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ddd;
+    float: left;
+}
+
+.item-desc .p-name {
+    float: left;
+    box-sizing: border-box;
+    width: 350px;
+    padding: 25px 10px;
+    overflow: hidden;
+}
+
+.item-price {
+    flex-basis: 64px;
+    text-align: center;
+}
+
+.item-num {
+    flex-basis: 400px;
+    text-align: center;
+}
+
+/* 结算样式 */
+.order-footer {
+    margin-top: 10px;
+    text-align: right;
+    background-color: #eeeeee;
+}
+
+.submit-total {
+    font-size: 18px;
+    color: #c60023;
+    font-weight: 700;
+    margin-right: 30px;
+    vertical-align: middle;
+}
+
+/* modal部分 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #eeeeee;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal-container {
+    width: 700px;
+    margin: 50px auto;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+.modal-container .modal-header {
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid #cccccc;
+}
+.modal-header .modal-title {
+    font-size: 14px;
+
+}
+.modal-header .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.modal-container .modal-body {
+    padding: 15px;
+}
+
+.form .form-line {
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.form .form-line .label {
+    display: block;
+    float: left;
+    width: 80px;
+    margin-right: 10px;
+    text-align: right;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.form .form-line .form-item {
+    padding: 0 5px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 10px;
+}
+
+.form .form-line .address-btn {
+    margin-left: 90px;
+    font-size: 13px;
+}  

@@ -1,0 +1,83 @@
+.order-detail-con .text-line {
+    height: 30px;
+    line-height: 30px;
+}
+
+.createTime {
+    margin-left: 10px;
+}
+
+.receiver span {
+    margin-right: 10px;
+}
+
+.payment {
+    text-align: center;
+}
+
+.payment .btn {
+    width: 52px;
+    height: 26px;
+    padding: 0 10px;
+    line-height: 26px;
+    font-size: 13px;
+    margin-right: 10px
+}
+
+.order-detail-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: #fafafa;
+}
+
+.order-detail-table .cell {
+    padding: 10px 0;
+    color: #666666;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.order-detail-table .header {
+    background: #eeeeee;
+}
+
+.order-detail-table .cell-img {
+    width: 10%;
+}
+
+.order-detail-table .cell-img img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ddd;
+}
+
+.order-detail-table .cell-info {
+    width: 45%;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.cell-info .p-intro {
+    color: #666666;
+}
+
+.order-detail-table .cell-price,
+.order-detail-table .cell-count,
+.order-detail-table .cell-total {
+    width: 15%;
+    text-align: center;
+}
+
+.total {
+    margin-top: 10px;
+    background: #eeeeee;
+    text-align: right;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.total-price {
+    font-weight: bold;
+    color: #c60023;
+}

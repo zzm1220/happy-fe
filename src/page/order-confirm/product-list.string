@@ -1,0 +1,33 @@
+<div class="head">
+    <span class="product-desc">商品描述</span>
+    <span class="product-price">价格</span>
+    <span class="product-num">数量</span>
+    <span class="product-all">小计</span>
+</div>
+<div class="list">
+    {{#orderItemVoList}}
+        <div class="product-item">
+            <span class="item-desc">
+                <a href="./detail.html?productId={{productId}}" class="link" target="_blank">
+                    <img src="{{imageHost}}{{productImage}}"
+                        alt="{{productName}}">
+                    <span class="p-name">{{productName}}</span>
+                </a>
+            </span>
+            <span class="item-price">
+                ￥{{currentUnitPrice}}
+            </span>
+            <span class="item-num">
+                ×{{quantity}}
+            </span>
+            <span class="item-all">
+                ￥{{totalPrice}}
+            </span>
+        </div>
+    {{/orderItemVoList}}
+</div>
+<div class="order-footer">
+    <span>订单总价：</span>
+    <span class="submit-total">￥{{productTotalPrice}}</span>
+    <span class="btn order-submit">提交订单</span>
+</div>
